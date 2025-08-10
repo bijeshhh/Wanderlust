@@ -42,10 +42,7 @@ async function main() {
   await mongoose.connect(dbUrl);
 }
 
-//Port
-app.listen(8080, () => {
-  console.log("Server is running on port 8080");
-});
+
 
 const store = MongoStore.create({
   mongoUrl: dbUrl,
@@ -121,4 +118,9 @@ app.use((err, req, res, next) => {
   let { statusCode = 500, message = "Something went wrong" } = err;
   //res.status(statusCode).send(message);
   res.status(statusCode).render("error.ejs", { message });
+});
+
+//Port
+app.listen(8080, () => {
+  console.log("Server is running on port 8080");
 });
